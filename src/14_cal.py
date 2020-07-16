@@ -31,39 +31,59 @@ import sys
 import calendar
 from datetime import datetime
 
+tc = calendar.TextCalendar()
+args = sys.argv
 
-def create_calender(**cal_args):
-    # add arguments to memory
-    items = cal_args.items()
+now = datetime.now()
 
-    # get current year from datetime module
-    current_date = datetime.now()
+month = now.month
+year = now.year
 
-    # loop through the given arguments tuple
-    for item in items:
-        items_length = len(items)
-        print(items_length)
+if (len(args) == 1):
+    pass
+elif (len(args) == 2):
+    month = int(args[1])
+elif (len(args) == 3):
+    month = int(args[1])
+    year = int(args[2])
 
-        if (items_length == 0):
-            # if a user gives no inputs, print calender for current month
-            print(calendar.month(current_date.year, current_date.month))
-            return
-        elif (items_length == 1):
-            # if user gives one input, assume its a month value
-            print(calendar.month(current_date.year, item[1]))
-            return
-        elif (items_length == 2):
-            # if a user gives two inputs, use both to create calendar
-            month, year = items
-            print(calendar.month(year[1], month[1]))
-            return
-        else:
-            print("Follow this format: create_calender(month, [year])")
-            return
+print("Here is the calender")
+tc.prmonth(year, month)
+
+# THE LONG WAY!!!
+# def create_calender(**cal_args):
+#     # add arguments to memory
+#     items = cal_args.items()
+
+#     # get current year from datetime module
+#     current_date = datetime.now()
+
+#     print(items)
+
+#     # loop through the given arguments tuple
+#     for item in items:
+#         items_length = len(items)
+#         print(items_length)
+#         # if (items_length == 0):
+#         #     # if a user gives no inputs, print calender for current month
+#         #     print(calendar.month(current_date.year, current_date.month))
+#         #     return
+#         if (items_length == 1):
+#             # if user gives one input, assume its a month value
+#             print(calendar.month(current_date.year, item[1]))
+#             return
+#         elif (items_length == 2):
+#             # if a user gives two inputs, use both to create calendar
+#             month, year = items
+#             print(calendar.month(year[1], month[1]))
+#             return
+#         else:
+#             print("Follow this format: create_calender(month, [year])")
+#             return
 
 
-create_calender()  # should return current month and year
-create_calender(month=1)  # should return january
-create_calender(month=5, year=1991)  # should return may 1991
+# create_calender()  # should return current month and year
+# create_calender(month=1)  # should return january
+# create_calender(month=5, year=1991)  # should return may 1991
 # should return the `else` statement
-create_calender(month=5, year=1991, third=0)
+# create_calender(month=5, year=1991, third=0)
